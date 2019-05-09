@@ -1,17 +1,30 @@
+{% load static %}
 <html>
     <head>
         <title>Blog Django Girls</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+        <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
     </head>
     <body>
-        <div>
+        <div class="page-header">
             <h1><a href="/">Blog Django Girls</a></h1>
         </div>
-        {% for post in posts %}
-	        <div>
-	        	<h1><a href=""> {{ post.title }}</a></h1>
-	        	<br> {{post.text|linebreaksbr}}</br> <!--linebreak converte quebra de linha em parágrafo-->
-	        	<p>Publicado em: {{ post.published_date }}</p>
-	        </div>
-	    {% endfor %}
+        <div class="content container">
+            <div class="row">
+                <div class="col-md-8">
+                    {% for post in posts %}
+                        <div class="post">
+                            <h1><a href="">{{ post.title }}</a></h1>
+                            <p>{{ post.text|linebreaksbr }}</p>
+                            <div class="date">
+                                <p>published: {{ post.published_date }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
     </body>
 </html>
